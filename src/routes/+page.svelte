@@ -2,6 +2,7 @@
 	import { default as Card, CardData } from '$lib/Card.svelte';
 	import Cropper from "svelte-easy-crop";
 	import { getCroppedImg } from '$lib/canvasUtils.js';
+	export const prerender = true;
 
 	let data = new CardData();
 
