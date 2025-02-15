@@ -19,7 +19,7 @@
 		triggerImageFinal = $state("")
 		energyImage = $state("")
 		raidImage = $state("")
-		templateFinal = $state("/purpleTemplate.png")
+		templateFinal = $state("static/purpleTemplate.png")
 	}
 </script>
 
@@ -326,10 +326,6 @@
 		word-wrap: normal
 	}
 	
-	.image::before {
-   		content:url(/purpleTemplate.png);
-		pointer-events: none; 
-	}
 	.raid {
 		position: relative;
 	}
