@@ -1,4 +1,5 @@
 <script module lang=ts>
+	import { base } from '$app/paths';
 	export class CardData {
 		// todo: add more fields
 		name = $state("default")
@@ -19,7 +20,7 @@
 		triggerImageFinal = $state("")
 		energyImage = $state("")
 		raidImage = $state("")
-		templateFinal = $state("static/purpleTemplate.png")
+		templateFinal = $state("/purpleTemplate.png")
 	}
 </script>
 
@@ -258,7 +259,7 @@
 <div class="card" bind:this={div}>
 	<!-- todo: figure out positioning of elements. and make sure that they overflow properly -->
 	<!--<div class="image"></div>-->
-	<img src={data.templateFinal} />
+	<img src={base+data.templateFinal} />
 	<div style="top: 51px; left: 56px; font-size: 30px">{data.energyCost}</div>
     <div style="top: 3rem; left: 13rem; width: 200px; font-size: 30px; text-align: center">{data.name}</div>
 	<div style="top: 90px; left: 13rem; width: 200px; font-size: 15px; text-align: center">{data.affinity}</div>
