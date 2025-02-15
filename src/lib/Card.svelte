@@ -269,13 +269,13 @@
 		<div style="">{data.effect}<br></div>
 		<div class="raid">
 			{#if data.raidMaterial != ""}
-				<img src={data.raidImage} style="position: absolute; width: 510px; height: 35px; z-index: 6;"/>
+				<img src={base+data.raidImage} style="position: absolute; width: 510px; height: 35px; z-index: 6;"/>
 				<div style="position: absolute; top: 8px; left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
 				<div style="position: absolute; top: 20px; left: 4px; width: 495px; outline: 1px solid; border-radius: 5px; z-index: 5;"><br>{data.raidEffect}</div>
 			{/if}
 		</div>
 	</div>
-	<img src={data.triggerImageFinal} />
+	<img src={base+data.triggerImageFinal} />
 	<div style="bottom: 40px; left: 40px; width: 100px; text-align: right; font-size: 30px">{data.battlePoints}</div>
 	{#if data.battlePointPlus == true}
 		<div style="bottom: 33px; left: 141px; font-size: 45px">+</div>
@@ -284,7 +284,7 @@
 		<div style="bottom: 40px; left: 142px; font-size: 30px;">BP</div>
 	{/if}
 	
-	<img src={data.energyImage} />
+	<img src={base+data.energyImage} />
 	<!-- 113 height 39 width-->
 	<div style="top: 90px; left: 0px; width: 100%; height: 50%; z-index: -10; pointer-events: auto;">
 		<Cropper
