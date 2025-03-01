@@ -266,7 +266,10 @@
 	<div style="top: 97px; left: 96px; font-size: 25px">{data.actionPointCost}</div>
 	<div style="bottom: 343px; left: 4rem">{data.type}</div>
 	<div class="effect">
-		<div style="">{data.effect}<br></div>
+		{#if data.effect != ""}
+			<div style="">{data.effect}<br></div>
+		{/if}
+		
 		<div class="raid">
 			{#if data.raidMaterial != ""}
 				<img src={base+data.raidImage} style="position: absolute; width: 510px; height: 35px; z-index: 6;"/>
