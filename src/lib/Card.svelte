@@ -30,6 +30,7 @@
     import html2canvas from "html2canvas";
 	import Cropper from "svelte-easy-crop";
 	import { getCroppedImg } from '$lib/canvasUtils.js';
+	
 
 
 	interface Props {
@@ -278,7 +279,9 @@
 			{/if}
 		</div>
 	</div>
-	<img src={base+data.triggerImageFinal} />
+	{#if data.triggerImageFinal != ""}
+		<img src={base+data.triggerImageFinal} />	
+	{/if}
 	<div style="bottom: 40px; left: 40px; width: 100px; text-align: right; font-size: 30px">{data.battlePoints}</div>
 	{#if data.battlePointPlus == true}
 		<div style="bottom: 33px; left: 141px; font-size: 45px">+</div>
@@ -327,7 +330,8 @@
 		left: 41px;  
 		width: 515px; 
 		height: 190px; 
-		word-wrap: normal
+		word-wrap: normal;
+		white-space: pre-wrap;
 	}
 	
 	.raid {
