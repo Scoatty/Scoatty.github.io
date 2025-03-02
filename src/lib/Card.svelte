@@ -262,8 +262,8 @@
 	<!--<div class="image"></div>-->
 	<img src={base+data.templateFinal} />
 	<div style="top: 51px; left: 56px; font-size: 30px">{data.energyCost}</div>
-    <div style="top: 3rem; left: 13rem; width: 200px; font-size: 30px; text-align: center">{data.name}</div>
-	<div style="top: 90px; left: 13rem; width: 200px; font-size: 15px; text-align: center">{data.affinity}</div>
+    <div style="top: 3rem; left: 105px; width: 430px; font-size: 30px; text-align: center">{data.name}</div>
+	<div style="top: 90px; left: 105px; width: 430px; font-size: 15px; text-align: center">{data.affinity}</div>
 	<div style="top: 97px; left: 96px; font-size: 25px">{data.actionPointCost}</div>
 	<div style="bottom: 343px; left: 4rem">{data.type}</div>
 	<div class="effect">
