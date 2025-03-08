@@ -273,9 +273,9 @@
 		
 		<div class="raid">
 			{#if data.raidMaterial != ""}
-				<img src={base+data.raidImage} style="position: absolute; width: 510px; height: 35px; z-index: 6;"/>
-				<div style="position: absolute; top: 8px; left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-				<div style="position: absolute; top: 20px; left: 4px; width: 495px; outline: 1px solid; border-radius: 5px; z-index: 5;"><br>{data.raidEffect}</div>
+				<img src={base+data.raidImage} style="position: absolute; top: -15px; width: 510px; height: 35px; z-index: 6;"/>
+				<div style="position: absolute; top: -7px; left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
+				<div style="position: absolute; top: 5px; left: 4px; width: 495px; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
 			{/if}
 		</div>
 	</div>
