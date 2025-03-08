@@ -289,8 +289,10 @@
 	{:else}
 		<div style="bottom: 40px; left: 142px; font-size: 30px;">BP</div>
 	{/if}
+	{#if data.energyImage != ""}
+		<img src={base+data.energyImage} />	
+	{/if}
 	
-	<img src={base+data.energyImage} />
 	<!-- 113 height 39 width-->
 	<div style="top: 90px; left: 0px; width: 100%; height: 50%; z-index: -10; pointer-events: auto;">
 		<Cropper
