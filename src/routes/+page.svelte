@@ -138,9 +138,6 @@
 		</select>
 		<p>Color:</p>
 		<select bind:value={data.color} onchange={update}>
-			<option>
-
-			</option>
 			<option value="purple">
 				Purple
 			</option>
@@ -157,6 +154,8 @@
 				Red
 			</option>
 		</select>
+		<p>Full Art:</p>
+		<input type="checkbox" style="max-width: 13px" bind:checked={data.templateFullArt} onchange={update} />
 		<p>Image Upload:</p>
 		<input type="file" accept=".jpg, .jpeg, .png" onchange={(e)=>onFileSelected(e)} bind:this={fileinput} >
 		

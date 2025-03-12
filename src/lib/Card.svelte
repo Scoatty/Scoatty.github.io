@@ -16,11 +16,12 @@
 		battlePoints = $state("500")
 		battlePointPlus = $state(false)
 		energyGeneration = $state("")
-		color = $state("")
+		color = $state("purple")
 		triggerImageFinal = $state("")
 		energyImage = $state("")
 		raidImage = $state("")
 		templateFinal = $state("/purpleTemplate.png")
+		templateFullArt = $state(false)
 	}
 </script>
 
@@ -91,21 +92,39 @@
 		if (data.trigger == ""){
 			data.triggerImageFinal = ""
 		}
-		//updates Template color
-		if (data.color == "red"){
-			data.templateFinal = "/redTemplate.png"
-		}
-		if (data.color == "blue"){
-			data.templateFinal = "/blueTemplate.png"
-		}
-		if (data.color == "yellow"){
-			data.templateFinal = "/yellowTemplate.png"
-		}
-		if (data.color == "green"){
-			data.templateFinal = "/greenTemplate.png"
-		}
-		if (data.color == "purple"){
-			data.templateFinal = "/purpleTemplate.png"
+		//updates Template color and full art
+		if (data.templateFullArt == false) {
+			if (data.color == "red"){
+				data.templateFinal = "/redTemplate.png"
+			}
+			if (data.color == "blue"){
+				data.templateFinal = "/blueTemplate.png"
+			}
+			if (data.color == "yellow"){
+				data.templateFinal = "/yellowTemplate.png"
+			}
+			if (data.color == "green"){
+				data.templateFinal = "/greenTemplate.png"
+			}
+			if (data.color == "purple"){
+				data.templateFinal = "/purpleTemplate.png"
+			}
+		} else {
+			if (data.color == "red"){
+				data.templateFinal = "/redFullArtTemplate.png"
+			}
+			if (data.color == "blue"){
+				data.templateFinal = "/blueFullArtTemplate.png"
+			}
+			if (data.color == "yellow"){
+				data.templateFinal = "/yellowFullArtTemplate.png"
+			}
+			if (data.color == "green"){
+				data.templateFinal = "/greenFullArtTemplate.png"
+			}
+			if (data.color == "purple"){
+				data.templateFinal = "/purpleFullArtTemplate.png"
+			}
 		}
 		//updates BP+ checkbox image
 		if (data.battlePointPlus == true){
@@ -265,47 +284,110 @@
     <div style="top: 3rem; left: 105px; width: 430px; font-size: 30px; text-align: center">{data.name}</div>
 	<div style="top: 90px; left: 105px; width: 430px; font-size: 15px; text-align: center">{data.affinity}</div>
 	<div style="top: 97px; left: 96px; font-size: 25px">{data.actionPointCost}</div>
-	<div style="bottom: 343px; left: 4rem">{data.type}</div>
-	<div class="effect">
-		{#if data.effect != ""}
-			<div style="">{data.effect}<br></div>
-		{/if}
-		
-		<div class="raid">
-			{#if data.raidMaterial != ""}
-				<img src={base+data.raidImage} style="position: absolute; top: -15px; width: 510px; height: 35px; z-index: 6;"/>
-				<div style="position: absolute; top: -7px; left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-				<div style="position: absolute; top: 5px; left: 4px; width: 495px; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
+	{#if data.templateFullArt != true}
+		<div style="bottom: 343px; left: 4rem">{data.type}</div>
+		<div class="effect">
+			{#if data.effect != ""}
+				<div style="">{data.effect}<br></div>
 			{/if}
+			
+			<div class="raid">
+				{#if data.raidMaterial != ""}
+					<img src={base+data.raidImage} style="position: absolute; top: -15px; width: 510px; height: 35px; z-index: 6;"/>
+					<div style="position: absolute; top: -7px; left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
+					<div style="position: absolute; top: 5px; left: 4px; width: 495px; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
+				{/if}
+			</div>
 		</div>
-	</div>
+	{:else}
+		{#if data.triggerImageFinal != ""}
+			<div class="artEffect">			
+				<div class="raid">
+					{#if data.raidMaterial != ""}
+						<img src={base+data.raidImage} style="display: flex; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
+						<div style="display: flex; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
+						<div style="display: flex; margin-top: -18px; margin-left: 4px; width: 495px; border-color: black; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
+					{/if}
+				</div>
+				{#if data.effect != ""}
+					<div style="">{data.effect}<br></div>
+				{/if}
+				<div class="typeTag">
+					<img src={"/typeTag.png"} style="position: absolute; left: -5px;" />
+					<div style="position: absolute; top: 0px; left: 23px">{data.type}</div>
+					
+				</div>
+			</div>
+		{:else}
+		<div class="artEffect" style="bottom: 85px;">			
+			<div class="raid">
+				{#if data.raidMaterial != ""}
+					<img src={base+data.raidImage} style="display: flex; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
+					<div style="display: flex; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
+					<div style="display: flex; margin-top: -18px; margin-left: 4px; width: 495px; border-color: black; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
+				{/if}
+			</div>
+			{#if data.effect != ""}
+				<div style="">{data.effect}<br></div>
+			{/if}
+			<div class="typeTag">
+				<img src={"/typeTag.png"} style="position: absolute; left: -5px;" />
+				<div style="position: absolute; top: 0px; left: 23px">{data.type}</div>
+				
+			</div>
+		</div>
+		{/if}
+	{/if}
 	{#if data.triggerImageFinal != ""}
 		<img src={base+data.triggerImageFinal} />	
 	{/if}
-	<div style="bottom: 40px; left: 40px; width: 100px; text-align: right; font-size: 30px">{data.battlePoints}</div>
-	{#if data.battlePointPlus == true}
-		<div style="bottom: 33px; left: 141px; font-size: 45px">+</div>
-		<div style="bottom: 40px; left: 168px; font-size: 30px;">BP</div>
-	{:else}
-		<div style="bottom: 40px; left: 142px; font-size: 30px;">BP</div>
+	{#if data.battlePoints != ""}
+		<div style="bottom: 40px; left: 40px; width: 100px; text-align: right; font-size: 30px">{data.battlePoints}</div>
+		{#if data.battlePointPlus == true}
+			<div style="bottom: 33px; left: 141px; font-size: 45px">+</div>
+			<div style="bottom: 40px; left: 168px; font-size: 30px;">BP</div>
+		{:else}
+			<div style="bottom: 40px; left: 142px; font-size: 30px;">BP</div>
+		{/if}
 	{/if}
 	{#if data.energyImage != ""}
 		<img src={base+data.energyImage} />	
 	{/if}
 	
-	<!-- 113 height 39 width-->
-	<div style="top: 90px; left: 0px; width: 100%; height: 50%; z-index: -10; pointer-events: auto;">
-		<Cropper
-			{image}
-			aspect={1}
-			zoom = {1}
-			crop = {{ x: 0, y: 0 }}
-			cropSize = {{width: 527, height: 374}}
-			showGrid = {false}
-			restrictPosition = {false}
-			oncropcomplete={previewCrop}
-		/>
-	</div>
+	{#if data.templateFullArt != true}
+		<!-- 112 height 38 width Frame-->
+		<div style="top: 0px; left: 0px; width: 600px; height: 598px; z-index: -10; pointer-events: auto;">
+			<Cropper
+				{image}
+				aspect={1}
+				zoom = {1}
+				minZoom = {.5}
+				maxZoom = {5}
+				crop = {{ x: 0, y: 0 }}
+				cropSize = {{width: 527, height: 374}}
+				showGrid = {false}
+				restrictPosition = {false}
+				oncropcomplete={previewCrop}
+			/>
+		</div>
+	{:else}
+		<!-- 113 height 39 width-->
+		<div style="top: 0px; left: 0px; width: 600px; height: 838px; z-index: -10; pointer-events: auto;">
+			<Cropper
+				{image}
+				aspect={1}
+				zoom = {1}
+				minZoom = {.5}
+				maxZoom = {5}
+				crop = {{ x: 0, y: 0 }}
+				cropSize = {{width: 527, height: 670}}
+				showGrid = {false}
+				restrictPosition = {false}
+				oncropcomplete={previewCrop}
+			/>
+		</div>
+	{/if}
+
 	
 </div>
 
@@ -336,7 +418,25 @@
 		white-space: pre-wrap;
 	}
 	
+	.artEffect {
+		bottom: 150px; 
+		left: 41px;  
+		width: 515px; 
+		height: 190px; 
+		display: flex;
+		flex-direction: column-reverse;
+		word-wrap: normal;
+		white-space: pre-wrap;
+	}
+
 	.raid {
+		position: relative;
+		display: flex;
+		max-width: 510px;
+		flex-wrap: wrap;
+	}
+
+	.typeTag {
 		position: relative;
 	}
 
