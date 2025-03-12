@@ -304,9 +304,9 @@
 			<div class="artEffect">			
 				<div class="raid">
 					{#if data.raidMaterial != ""}
-						<img src={base+data.raidImage} style="display: flex; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
-						<div style="display: flex; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-						<div style="display: flex; margin-top: -18px; margin-left: 4px; width: 495px; border-color: black; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
+						<img src={base+data.raidImage} style="position: relative; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
+						<div style="position: relative; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
+						<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
 					{/if}
 				</div>
 				{#if data.effect != ""}
@@ -322,9 +322,9 @@
 		<div class="artEffect" style="bottom: 85px;">			
 			<div class="raid">
 				{#if data.raidMaterial != ""}
-					<img src={base+data.raidImage} style="display: flex; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
-					<div style="display: flex; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-					<div style="display: flex; margin-top: -18px; margin-left: 4px; width: 495px; border-color: black; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
+					<img src={base+data.raidImage} style="position: relative; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
+					<div style="position: relative; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
+					<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
 				{/if}
 			</div>
 			{#if data.effect != ""}
