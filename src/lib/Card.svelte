@@ -8,10 +8,16 @@
 		affinity = $state("[]")
 		type = $state("Character")
 		//todo: add Keyword borders to reserved words in effect text
-		effect = $state("this card does nothing")
+		effect = $state("")
+		effectFinal1 = $state("")
+		effectFinal2 = $state("")
+		effectFinal3 = $state("")
 		//todo: add Raid Graphic when raid Material != ""
 		raidMaterial = $state("")
 		raidEffect = $state("")
+		raidEffectFinal1 = $state("")
+		raidEffectFinal2 = $state("")
+		raidEffectFinal3 = $state("")
 		trigger = $state("")
 		battlePoints = $state("500")
 		battlePointPlus = $state(false)
@@ -45,6 +51,13 @@
 	let bpCheckImage
 	let energyImage
 	let raidImage
+	let effectFinal1: HTMLDivElement
+	let effectFinal2: HTMLDivElement
+	let effectFinal3: HTMLDivElement
+	let raidEffectFinal1: HTMLDivElement
+	let raidEffectFinal2: HTMLDivElement
+	let raidEffectFinal3: HTMLDivElement
+
 
 
 	let fileinput, pixelCrop, croppedImage;
@@ -53,6 +66,42 @@
 	let zoom = 1
 	
 	let div: HTMLDivElement;
+
+	function keywordPlacer(p1: string){
+		var temp = p1;
+		//replaces text with url to image
+		temp = temp.replaceAll(":whenplayed:", "<img src=\"/whenPlayed.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":whenattacking:", "<img src=\"/whenAttacking.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":whenblocking:", "<img src=\"/whenBlocking.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":whensidelined:", "<img src=\"/whenSidelined.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":duringyourturn:", "<img src=\"/duringYourTurn.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":duringopponentsturn:", "<img src=\"/duringOpponentsTurn.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":ifonthefrontline:", "<img src=\"/ifOnTheFrontLine.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":ifontheenergyline:", "<img src=\"/ifOnTheEnergyLine.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":switchtoresting:", "<img src=\"/switchToResting.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":place1cardfromhandintothesideline:", "<img src=\"/place1CardFromHandIntoTheSideline.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":pay1AP:", "<img src=\"/pay1AP.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":sidelinethiscard:", "<img src=\"/sidelineThisCard.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":onceperturn:", "<img src=\"/oncePerTurn.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":step:", "<img src=\"/step.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":snipe:", "<img src=\"/snipe.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":doubleattack:", "<img src=\"/doubleAttack.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":doubleblock:", "<img src=\"/doubleBlock.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":impact1:", "<img src=\"/impact1.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":impact+1:", "<img src=\"/impact+1.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":damage2:", "<img src=\"/damage2.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":damage+1:", "<img src=\"/damage+1.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":nullifyimpact:", "<img src=\"/nullifyImpact.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":activatemain:", "<img src=\"/activateMain.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":onceperturn:", "<img src=\"/oncePerTurn.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":redenergy:", "<img src=\"/redEnergy.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":blueenergy:", "<img src=\"/blueEnergy.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":greenenergy:", "<img src=\"/greenEnergy.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":yellowenegery:", "<img src=\"/yellowEnergy.png\" style=\"vertical-align: bottom;\"/>");
+		temp = temp.replaceAll(":purpleenergy:", "<img src=\"/purpleEnergy.png\" style=\"vertical-align: bottom;\"/>");
+
+		return temp;
+	}
 
 	function update(){
 		//updates triggerImageFinal.src
@@ -109,6 +158,9 @@
 			if (data.color == "purple"){
 				data.templateFinal = "/purpleTemplate.png"
 			}
+			if (data.color == "") {
+				data.templateFinal = ""
+			}
 		} else {
 			if (data.color == "red"){
 				data.templateFinal = "/redFullArtTemplate.png"
@@ -125,6 +177,9 @@
 			if (data.color == "purple"){
 				data.templateFinal = "/purpleFullArtTemplate.png"
 			}
+			if (data.color == "") {
+				data.templateFinal = ""
+			}
 		}
 		//updates BP+ checkbox image
 		if (data.battlePointPlus == true){
@@ -133,7 +188,7 @@
 		else{
 			data.bpCheckImage = ""
 		}
-		//updatse Energy or color not selected
+		//updates Energy or color not selected
 		if (data.energyGeneration == "" || data.color == "") {
 			data.energyImage = ""
 		}
@@ -239,9 +294,38 @@
 		else {
 			data.raidImage = ""
 		}
+		//updates Effect text to include pictures
+		if (data.effect != "") {
+			if (data.templateFullArt == false) {
+				effectFinal1.innerHTML = keywordPlacer(data.effect) + "<br>";
+			} else if (data.trigger == "") {
+				effectFinal3.innerHTML = keywordPlacer(data.effect) + "<br>";
+			} else {
+				effectFinal2.innerHTML = keywordPlacer(data.effect) + "<br>";
+			}
+			
+		}
+		
+		//updates raid effect text to include pictures
+		if (data.raidEffect != "") {
+			var temp = keywordPlacer(data.raidEffect);
+			if (data.templateFullArt == false){
+				raidEffectFinal1.innerHTML = "<br>" + temp;
+			} else if (data.trigger == "") {
+				raidEffectFinal3.innerHTML = "<br>" + temp;
+			} else {
+				raidEffectFinal2.innerHTML = "<br>" + temp;
+			}
+			
+			
+			
+			console.log(raidEffectFinal1);
+			console.log(raidEffectFinal2);
+			console.log(raidEffectFinal3);
+		}
 	}
 
-	function previewCrop(e){
+	function previewCrop(e: { detail: { pixels: { x: any; y: any; width: any; }; }; }){
 		pixelCrop = e.detail.pixels;
 		const { x, y, width } = e.detail.pixels;
 		const scale = 200 / width;	
@@ -288,14 +372,14 @@
 		<div style="bottom: 343px; left: 4rem">{data.type}</div>
 		<div class="effect">
 			{#if data.effect != ""}
-				<div style="">{data.effect}<br></div>
+				<div style="vertical-align: text-top;" bind:this={effectFinal1}></div>
 			{/if}
 			
 			<div class="raid">
 				{#if data.raidMaterial != ""}
 					<img src={base+data.raidImage} style="position: absolute; top: -15px; width: 510px; height: 35px; z-index: 6;"/>
 					<div style="position: absolute; top: -7px; left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-					<div style="position: absolute; top: 5px; left: 4px; width: 495px; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
+					<div style="position: absolute; top: 5px; left: 4px; width: 495px; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;" bind:this={raidEffectFinal1}></div>
 				{/if}
 			</div>
 		</div>
@@ -306,11 +390,11 @@
 					{#if data.raidMaterial != ""}
 						<img src={base+data.raidImage} style="position: relative; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
 						<div style="position: relative; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-						<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
+						<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;" bind:this={raidEffectFinal2}></div>
 					{/if}
 				</div>
 				{#if data.effect != ""}
-					<div style="">{data.effect}<br></div>
+					<div style=""bind:this={effectFinal2}></div>
 				{/if}
 				<div class="typeTag">
 					<img src={"/typeTag.png"} style="position: absolute; left: -5px;" />
@@ -324,11 +408,11 @@
 				{#if data.raidMaterial != ""}
 					<img src={base+data.raidImage} style="position: relative; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
 					<div style="position: relative; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-					<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;"><br>{data.raidEffect}</div>
+					<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;" bind:this={raidEffectFinal3}></div>
 				{/if}
 			</div>
 			{#if data.effect != ""}
-				<div style="">{data.effect}<br></div>
+				<div style=""bind:this={effectFinal3}></div>
 			{/if}
 			<div class="typeTag">
 				<img src={"/typeTag.png"} style="position: absolute; left: -5px;" />
@@ -356,7 +440,7 @@
 	
 	{#if data.templateFullArt != true}
 		<!-- 112 height 38 width Frame-->
-		<div style="top: 0px; left: 0px; width: 600px; height: 598px; z-index: -10; pointer-events: auto;">
+		<div style="top: 22px; left: 0px; width: 600px; height: 554px; z-index: -10; pointer-events: auto;">
 			<Cropper
 				{image}
 				aspect={1}
@@ -372,7 +456,7 @@
 		</div>
 	{:else}
 		<!-- 113 height 39 width-->
-		<div style="top: 0px; left: 0px; width: 600px; height: 838px; z-index: -10; pointer-events: auto;">
+		<div style="top: 22px; left: 0px; width: 600px; height: 794px; z-index: -10; pointer-events: auto;">
 			<Cropper
 				{image}
 				aspect={1}

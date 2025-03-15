@@ -76,11 +76,11 @@
 			</option>
 		</select>
 		<p>Effect:</p>
-		<textarea bind:value={data.effect} onchange={update}/>
+		<textarea bind:value={data.effect} oninput={update}/>
 		<p>Raid Material:</p>
 		<input bind:value={data.raidMaterial} onchange={update}/>
 		<p>Raid Effect:</p>
-		<textarea bind:value={data.raidEffect} onchange={update}/>
+		<textarea bind:value={data.raidEffect} oninput={update}/>
 		<p>Trigger</p>
 		<select bind:value={data.trigger} onchange={update}>
 			<option>
