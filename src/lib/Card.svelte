@@ -366,7 +366,7 @@
 	<!-- todo: figure out positioning of elements. and make sure that they overflow properly -->
 	<!--<div class="image"></div>-->
 	<img src={base+data.templateFinal} />
-	<div style="top: 51px; left: 56px; font-size: 30px">{data.energyCost}</div>
+	<div style="top: 50px; left: 51px; width: 30px; font-size: 30px; text-align: center;">{data.energyCost}</div>
     <div style="top: 3rem; left: 105px; width: 430px; font-size: 30px; text-align: center">{data.name}</div>
 	<div style="top: 90px; left: 105px; width: 430px; font-size: 15px; text-align: center">{data.affinity}</div>
 	<div style="top: 97px; left: 96px; font-size: 25px">{data.actionPointCost}</div>
