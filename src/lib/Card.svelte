@@ -70,6 +70,8 @@
 	function keywordPlacer(p1: string){
 		var temp = p1;
 		//replaces text with url to image
+		temp = temp.replaceAll("<", "&lt;");
+		temp = temp.replaceAll(">", "&gt;");
 		temp = temp.replaceAll(":whenplayed:", "<img src=\"/whenPlayed.png\" style=\"vertical-align: bottom;\"/>");
 		temp = temp.replaceAll(":whenattacking:", "<img src=\"/whenAttacking.png\" style=\"vertical-align: bottom;\"/>");
 		temp = temp.replaceAll(":whenblocking:", "<img src=\"/whenBlocking.png\" style=\"vertical-align: bottom;\"/>");
