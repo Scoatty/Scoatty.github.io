@@ -131,7 +131,7 @@
 		if (data.trigger == "Color" && data.color == "blue"){
 			data.triggerImageFinal = "/colorBlueTrigger.png"
 		}
-		if (data.trigger == "Color" && data.color == "yellow"){
+		if (data.trigger == "Color" && data.color == "yellow" || "white"){
 			data.triggerImageFinal = "/colorYellowTrigger.png"
 		}
 		if (data.trigger == "Color" && data.color == "green"){
@@ -160,6 +160,9 @@
 			if (data.color == "purple"){
 				data.templateFinal = "/purpleTemplate.png"
 			}
+			if (data.color == "white") {
+				data.templateFinal = "/whiteTemplate.png"
+			}
 			if (data.color == "") {
 				data.templateFinal = ""
 			}
@@ -178,6 +181,9 @@
 			}
 			if (data.color == "purple"){
 				data.templateFinal = "/purpleFullArtTemplate.png"
+			}
+			if (data.color == "white"){
+				data.templateFinal = "/whiteFullArtTemplate.png"
 			}
 			if (data.color == "") {
 				data.templateFinal = ""
@@ -289,6 +295,25 @@
 		if (data.energyGeneration == "3+" && data.color =="yellow"){
 			data.energyImage = "/yellowEnergy3+.png"
 		}
+		//updates Energy (white)
+		if (data.energyGeneration == "1" && data.color =="white"){
+			data.energyImage = "/whiteEnergy1.png"
+		}
+		if (data.energyGeneration == "2" && data.color =="white"){
+			data.energyImage = "/whiteEnergy2.png"
+		}
+		if (data.energyGeneration == "3" && data.color =="white"){
+			data.energyImage = "/whiteEnergy3.png"
+		}
+		if (data.energyGeneration == "1+" && data.color =="white"){
+			data.energyImage = "/whiteEnergy1+.png"
+		}
+		if (data.energyGeneration == "2+" && data.color =="white"){
+			data.energyImage = "/whiteEnergy2+.png"
+		}
+		if (data.energyGeneration == "3+" && data.color =="white"){
+			data.energyImage = "/whiteEnergy3+.png"
+		}
 		//updates raidImage if there is a Raid Material
 		if (data.raidMaterial != ""){
 			data.raidImage = "/raidImage.png"
@@ -312,11 +337,11 @@
 		if (data.raidEffect != "") {
 			var temp = keywordPlacer(data.raidEffect);
 			if (data.templateFullArt == false){
-				raidEffectFinal1.innerHTML = "<br>" + temp;
+				raidEffectFinal1.innerHTML = temp;
 			} else if (data.trigger == "") {
-				raidEffectFinal3.innerHTML = "<br>" + temp;
+				raidEffectFinal3.innerHTML = temp;
 			} else {
-				raidEffectFinal2.innerHTML = "<br>" + temp;
+				raidEffectFinal2.innerHTML = temp;
 			}
 			
 			
@@ -381,7 +406,7 @@
 				{#if data.raidMaterial != ""}
 					<img src={base+data.raidImage} style="position: absolute; top: -15px; width: 510px; height: 35px; z-index: 6;"/>
 					<div style="position: absolute; top: -7px; left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-					<div style="position: absolute; top: 5px; left: 4px; width: 495px; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;" bind:this={raidEffectFinal1}></div>
+					<div style="position: absolute; top: 5px; left: 4px; width: 495px; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px; padding-top: 14px;" bind:this={raidEffectFinal1}></div>
 				{/if}
 			</div>
 		</div>
@@ -392,7 +417,7 @@
 					{#if data.raidMaterial != ""}
 						<img src={base+data.raidImage} style="position: relative; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
 						<div style="position: relative; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-						<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;" bind:this={raidEffectFinal2}></div>
+						<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px; padding-top: 14px;" bind:this={raidEffectFinal2}></div>
 					{/if}
 				</div>
 				{#if data.effect != ""}
@@ -410,7 +435,7 @@
 				{#if data.raidMaterial != ""}
 					<img src={base+data.raidImage} style="position: relative; top: 0px; width: 510px; height: 35px; z-index: 6;"/>
 					<div style="position: relative; margin-top: -27px; margin-left: 110px; font-size: 20px; z-index: 7;">&lt;{data.raidMaterial}&gt;</div>
-					<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px;" bind:this={raidEffectFinal3}></div>
+					<div style="position: relative; margin-top: -18px; margin-left: 4px; width: 495px; border-color: white; border-style: solid; border-width: 1px; border-radius: 5px; z-index: 5; padding: 2px; padding-top: 14px;" bind:this={raidEffectFinal3}></div>
 				{/if}
 			</div>
 			{#if data.effect != ""}

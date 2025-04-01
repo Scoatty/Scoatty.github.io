@@ -153,6 +153,9 @@
 			<option value="red">
 				Red
 			</option>
+			<option value="white">
+				White (yellow)
+			</option>
 		</select>
 		<p>Full Art:</p>
 		<input type="checkbox" style="max-width: 13px" bind:checked={data.templateFullArt} onchange={update} />
