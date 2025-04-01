@@ -131,7 +131,7 @@
 		if (data.trigger == "Color" && data.color == "blue"){
 			data.triggerImageFinal = "/colorBlueTrigger.png"
 		}
-		if (data.trigger == "Color" && data.color == "yellow" || "white"){
+		if (data.trigger == "Color" && (data.color == "yellow" || "white")){
 			data.triggerImageFinal = "/colorYellowTrigger.png"
 		}
 		if (data.trigger == "Color" && data.color == "green"){
@@ -295,7 +295,7 @@
 		if (data.energyGeneration == "3+" && data.color =="yellow"){
 			data.energyImage = "/yellowEnergy3+.png"
 		}
-		//updates Energy (white)
+		//updates Energy (White)
 		if (data.energyGeneration == "1" && data.color =="white"){
 			data.energyImage = "/whiteEnergy1.png"
 		}
