@@ -474,6 +474,7 @@
 				zoom = {1}
 				minZoom = {.5}
 				maxZoom = {5}
+				zoomSpeed = {.25}
 				crop = {{ x: 0, y: 0 }}
 				cropSize = {{width: 527, height: 374}}
 				showGrid = {false}
@@ -490,6 +491,7 @@
 				zoom = {1}
 				minZoom = {.5}
 				maxZoom = {5}
+				zoomSpeed = {.25}
 				crop = {{ x: 0, y: 0 }}
 				cropSize = {{width: 527, height: 670}}
 				showGrid = {false}
