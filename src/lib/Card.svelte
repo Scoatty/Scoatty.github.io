@@ -131,7 +131,10 @@
 		if (data.trigger == "Color" && data.color == "blue"){
 			data.triggerImageFinal = "/colorBlueTrigger.png"
 		}
-		if (data.trigger == "Color" && (data.color == "yellow" || "white")){
+		if (data.trigger == "Color" && data.color == "yellow"){
+			data.triggerImageFinal = "/colorYellowTrigger.png"
+		}
+		if (data.trigger == "Color" && data.color == "white"){
 			data.triggerImageFinal = "/colorYellowTrigger.png"
 		}
 		if (data.trigger == "Color" && data.color == "green"){
